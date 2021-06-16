@@ -30,8 +30,8 @@ public class StockServiceImpl implements StockService {
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
 
-    @Value("${MOCKED_EXTERNAL_API}")
-    private boolean mocked;
+    @Value("${MOCKED_EXTERNAL_API:false}")
+    private boolean mocked = false;
 
     @Autowired
     public StockServiceImpl(StockRepository stockInfoRepository) {

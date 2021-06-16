@@ -19,7 +19,7 @@ on:
 
 jobs:
 
-   build_server:
+  build_server:
     runs-on: ubuntu-latest
 
     defaults:

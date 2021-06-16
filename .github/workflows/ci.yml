@@ -60,7 +60,7 @@ jobs:
 
   end2end_test:
     runs-on: ubuntu-latest
-    needs: [build_server, build_client]
+    # needs: [build_server, build_client]
 
     strategy:
       matrix:

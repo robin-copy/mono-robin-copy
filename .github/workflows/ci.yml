@@ -36,7 +36,6 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
-
   build_client:
     runs-on: ubuntu-latest
 

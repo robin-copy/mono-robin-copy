@@ -1,0 +1,61 @@
+.list-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #f4f8f9;
+  height: 98vh;
+  width: 100%;
+
+  .list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #ffffff;
+      box-shadow: -1px 3px 15px -10px;
+    }
+
+    .share-name-and-volume-container {
+      display: flex;
+      flex-direction: column;
+
+      .share-name {
+        font-weight: bold;
+      }
+
+      .share-quantity {
+        color: #929aa3;
+      }
+    }
+
+    .share-price-container {
+      padding: 8px 12px;
+      border-radius: 5px;
+
+      .share-price {
+        color: white;
+      }
+
+      &.share-price-status-decreased {
+        background-color: #ff4e2c;
+      }
+
+      &.share-price-status-equal {
+        background-color: #b9b9b9;
+      }
+
+      &.share-price-status-increased {
+        background-color: #21cd9a;
+      }
+    }
+  }
+
+  .empty-list-message-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+}

@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  db:
+    container_name: stock_postgres_db
+    image: postgres:12
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${ASECA_PASSWORD}
+      POSTGRES_DB: postgres
+    volumes:
+      - data:/var/lib/postgresql/data
+
+  stock_service:
+    container_name: stock-service
+    image: docker.pkg.github.com/robin-copy/api/robin-copy-api-production:latest
+    environment:
+      FINNHUB_TOKEN: ${FINNHUB_TOKEN}
+      DB_NAME: postgres
+      DB_HOST: stock_postgres_db
+      DB_PORT: 5432
+      ASECA_PASSWORD: ${ASECA_PASSWORD}
+      DB_USER: postgres
+
+  client:
+    container_name: client
+    image: docker.pkg.github.com/robin-copy/client-web/robin-copy-client-production:latest
+
+  revproxy:
+    build:
+      context: .
+      dockerfile: Dockerfile.proxy
+    ports:
+      - 3000:80
+
+volumes:
+  data:
+    external: true

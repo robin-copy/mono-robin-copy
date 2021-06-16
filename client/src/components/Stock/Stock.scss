@@ -1,0 +1,47 @@
+.stock {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .sub-header {
+      width: 100%;
+      display: flex;
+
+      .principal {
+      }
+    }
+
+    .sub-header2 {
+      margin-top: 15px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .body {
+    display: flex;
+    width: 100%;
+    .table {
+      display: flex;
+    }
+  }
+  .description {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    span {
+      font-size: 20px;
+      color: gray;
+    }
+  }
+}

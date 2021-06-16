@@ -1,0 +1,40 @@
+$background-color-primary: #f4f8f9;
+
+.search-bar {
+  $color: #848ca0;
+
+  width: 100%;
+
+  &,
+  & * {
+    color: $color;
+    background-color: $background-color-primary;
+  }
+
+  .search-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 20px;
+
+    .search-icon {
+      font-size: 20px;
+    }
+
+    .search-bar-input {
+      font-size: 15px;
+      width: 300px;
+
+      &,
+      &::placeholder {
+        color: $color;
+      }
+
+      &,
+      &:focus-visible {
+        border: unset;
+        outline: unset;
+      }
+    }
+  }
+}

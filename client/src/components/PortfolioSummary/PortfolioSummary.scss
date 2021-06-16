@@ -1,0 +1,79 @@
+.portfolio-summary {
+
+  .empty-data-message-container {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+    height: 100%;
+  }
+
+  .all-data {
+    .label {
+      font-weight: bold;
+      color: black !important;
+    }
+
+    .summary-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      cursor: pointer;
+
+      .number {
+        padding: 8px 12px;
+        border-radius: 5px;
+        color: white;
+        width: 80px;
+        height: 20px;
+        text-align: center;
+      }
+
+      .total-balance-number{
+        background-color: #b9b9b9;
+      }
+
+      .increase-percentage-number-container {
+
+        &.status-negative {
+          background-color: #ff4e2c;
+        }
+
+        &.status-zero {
+          background-color: #b9b9b9;
+        }
+
+        &.status-positive {
+          background-color: #21cd9a;
+        }
+      }
+    }
+  }
+
+  .list-container {
+    width: 500px;
+
+    .list-item {
+      .shareNameContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        .share-name {
+          font-weight: bold;
+        }
+
+        .share-quantity {
+          color: #929aa3;
+        }
+      }
+
+      .shareInformation {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}

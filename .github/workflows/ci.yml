@@ -9,6 +9,9 @@ on:
       - main
       - develop
 
+    tags:
+      - "v*.*.*"
+
   pull_request:
     branches:
       - main
@@ -16,7 +19,7 @@ on:
 
       # Publish `v1.2.3` tags as releases.
     tags:
-      - v*
+      - "v*.*.*"
 
 env:
   IMAGE_NAME_SERVER: robin-copy-api
@@ -103,7 +106,7 @@ jobs:
     needs: end2end_test
 
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    if: ${{ github.event_name == 'push' && github.ref == "refs/tags/"*  }}
 
     permissions:
       contents: read
@@ -140,13 +143,13 @@ jobs:
           echo IMAGE_ID=$IMAGE_ID
           echo BRANCH_NAME=$BRANCH_NAME
 
-          docker tag $IMAGE_NAME_SERVER $IMAGE_ID-$BRANCH_NAME:latest
-          docker push $IMAGE_ID-$BRANCH_NAME:latest
+          docker tag $IMAGE_NAME_SERVER $IMAGE_ID:$BRANCH_NAME
+          docker push $IMAGE_ID:$BRANCH_NAME
 
   publish_client:
     needs: end2end_test
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    if: ${{ github.event_name == 'push' && github.ref == "refs/tags/"*  }}
 
     permissions:
       contents: read
@@ -178,10 +181,10 @@ jobs:
           # Strip "v" prefix from tag name
           [[ "${{ github.ref }}" == "refs/tags/"* ]] && BRANCH_NAME=$(echo $BRANCH_NAME | sed -e 's/^v//')
 
-          [ "$BRANCH_NAME" == "main" ] && BRANCH_NAME=production
+          # [ "$BRANCH_NAME" == "main" ] && BRANCH_NAME=production
 
           echo IMAGE_ID=$IMAGE_ID
           echo BRANCH_NAME=$BRANCH_NAME
 
-          docker tag $IMAGE_NAME_CLIENT $IMAGE_ID-$BRANCH_NAME:latest
-          docker push $IMAGE_ID-$BRANCH_NAME:latest
+          docker tag $IMAGE_NAME_CLIENT $IMAGE_ID:$BRANCH_NAME
+          docker push $IMAGE_ID:$BRANCH_NAME

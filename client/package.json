@@ -23,8 +23,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "cy:run": "cypress run --headless",
-    "prepare": "husky install"
+    "cy:run": "cypress run --headless"
   },
   "eslintConfig": {
     "extends": [
@@ -45,7 +44,6 @@
     ]
   },
   "devDependencies": {
-    "husky": "^6.0.0",
     "lint-staged": "^11.0.0",
     "prettier": "^2.3.0"
   },

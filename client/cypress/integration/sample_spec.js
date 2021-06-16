@@ -73,7 +73,7 @@ describe("end to end test without data", function () {
   });
 
   it("should show empty share list", function () {
-    cy.visit("http://192.168.0.121:3000");
+    cy.visit("http://localhost:3000");
     cy.get('[data-testid="emptyShareListContainer"]');
     cy.get('[data-testid="emptyDataContainer"]');
   });

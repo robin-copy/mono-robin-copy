@@ -79,7 +79,8 @@ jobs:
         working-directory: ./server
         run: |
           ./gradlew assemble
-          java -jar -Dspring.profiles.active=production ./build/libs/*.jar &
+          docker run -e POSTGRES_PASSWORD=aseca2021 -d -p 5432:5432 postgres
+          java -jar -Dspring.profiles.active=local ./build/libs/*.jar &
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2

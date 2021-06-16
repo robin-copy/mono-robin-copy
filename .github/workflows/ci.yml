@@ -103,7 +103,7 @@ jobs:
     needs: end2end_test
 
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
 
     permissions:
       contents: read
@@ -146,7 +146,7 @@ jobs:
   publish_client:
     needs: end2end_test
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
 
     permissions:
       contents: read

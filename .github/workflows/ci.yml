@@ -107,6 +107,10 @@ jobs:
       contents: read
       packages: write
 
+    defaults:
+      run:
+        working-directory: ./server
+
     steps:
       - uses: actions/checkout@v2
 
@@ -137,13 +141,17 @@ jobs:
           docker tag $IMAGE_NAME_SERVER $IMAGE_ID-$BRANCH_NAME:latest
           docker push $IMAGE_ID-$BRANCH_NAME:latest
 
-  publish_server:
+  publish_client:
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
 
     permissions:
       contents: read
       packages: write
+
+    defaults:
+      run:
+        working-directory: ./client
 
     steps:
       - uses: actions/checkout@v2

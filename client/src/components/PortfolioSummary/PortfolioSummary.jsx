@@ -13,7 +13,7 @@ export const PortfolioSummary = ({ userId }) => {
     const f = async () => {
       if (userId == null) return;
       try {
-        const { data } = await axios.get(`users/${userId}/summary`);
+        const { data } = await axios.get(`http://localhost:8080/api/users/${userId}/summary`);
         setPortfolioSummary(data);
       } catch (e) {}
     };

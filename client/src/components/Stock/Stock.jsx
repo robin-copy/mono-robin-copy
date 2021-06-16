@@ -69,7 +69,7 @@ export const Stock = ({
     (async () => {
       if (userId == null || stockSymbol == null) return;
       const { data } = await axios.get(
-        `/users/${userId}/shares/${stockSymbol}`
+        `http://localhost:8080/api/users/${userId}/shares/${stockSymbol}`
       );
       setStock(data);
     })();

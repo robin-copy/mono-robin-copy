@@ -1,7 +1,6 @@
 {
   "name": "robin-copy-client",
   "version": "0.1.0",
-  "proxy": "http://localhost:8080/api/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.12.0",

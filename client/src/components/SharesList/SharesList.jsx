@@ -47,7 +47,7 @@ export const SharesList = ({ userId, setStockSymbol, searchInput }) => {
     const f = async () => {
       if (userId == null) return;
       try {
-        const { data } = await axios.get(`users/${userId}/shares`);
+        const { data } = await axios.get(`http://localhost:8080/api/users/${userId}/shares`);
         setSharesList(data);
       } catch (e) {}
     };

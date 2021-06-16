@@ -27,11 +27,10 @@ public class StockServiceImpl implements StockService {
     private MockedRepository mockedRepository;
 
     static final long MILLISECONDS_IN_YEAR = (long) 1000 * 60 * 60 * 24 * 365;
-    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
 
     @Value("${MOCKED_EXTERNAL_API:false}")
-    private boolean mocked = false;
+    private boolean mocked;
 
     @Autowired
     public StockServiceImpl(StockRepository stockInfoRepository) {

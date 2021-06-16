@@ -15,7 +15,7 @@ import org.springframework.web.client.RestTemplate;
 @Repository
 public class StockInfoRepository implements StockRepository {
 
-    @Value("c2rv2q2ad3icoseq4910")
+    @Value("${FINNHUB_TOKEN:c35449iad3idcjopf9vg}")
     String token;
 
     public StockInfo getStockDetails(String stockSymbol) {

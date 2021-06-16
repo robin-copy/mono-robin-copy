@@ -8,7 +8,6 @@ import axios from "axios";
 describe("SharesList", () => {
   let getByTestId;
   let getByText;
-  let getSharesList;
   let sharesList = [
     {
       stockSymbol: "AAPL",
@@ -51,7 +50,7 @@ describe("SharesList", () => {
 
       await act(async () => {
         ({ getByTestId, queryByTestId } = render(
-          <SharesList userId={"test"} />
+          <SharesList userId={"test"} showGraph={false}/>
         ));
       });
     });
@@ -72,11 +71,10 @@ describe("SharesList", () => {
   describe("an empty share list", () => {
     let getByTestId;
     let shareListContainerElement;
-    getSharesList = jest.fn().mockName("getSharesList");
 
     beforeEach(async () => {
       sharesList = [];
-      ({ getByTestId } = render(<SharesList />));
+      ({ getByTestId } = render(<SharesList showGraph={false} />));
       shareListContainerElement = getByTestId("shareListContainer");
     });
 
@@ -113,7 +111,7 @@ describe("SharesList", () => {
       });
 
       await act(async () => {
-        ({ getByTestId, getByText } = render(<SharesList userId={"test"} />));
+        ({ getByTestId, getByText } = render(<SharesList userId={"test"} showGraph={false}/>));
       });
     });
 
@@ -146,7 +144,7 @@ describe("ListItem", () => {
 
   describe("a share on the list", () => {
     beforeEach(async () => {
-      ({ getByTestId } = render(<ListItem share={mockShare} />));
+      ({ getByTestId } = render(<ListItem share={mockShare} showGraph={false} />));
     });
 
     it("should have company name", () => {
@@ -179,7 +177,7 @@ describe("ListItem", () => {
       onClick = jest.fn().mockName("onClick");
 
       ({ getByTestId } = render(
-        <ListItem share={mockShare} onClick={onClick} />
+        <ListItem share={mockShare} onClick={onClick} showGraph={false} />
       ));
 
       userEvent.click(getByTestId("shareListItem"));

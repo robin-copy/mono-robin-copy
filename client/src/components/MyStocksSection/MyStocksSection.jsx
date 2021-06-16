@@ -3,7 +3,7 @@ import "./MyStocksSection.scss";
 import { SearchBar } from "../SearchBar/SearchBar";
 import { SharesList } from "../SharesList/SharesList";
 
-export const MyStocksSection = ({ userId, setStockSymbol }) => {
+export const MyStocksSection = ({ userId, setStockSymbol, showGraph = true }) => {
   const [searchInput, setSearchInput] = useState("");
   return (
     <div className={"stock-section"}>
@@ -12,6 +12,7 @@ export const MyStocksSection = ({ userId, setStockSymbol }) => {
         userId={userId}
         setStockSymbol={setStockSymbol}
         searchInput={searchInput}
+        showGraph={showGraph}
       />
     </div>
   );

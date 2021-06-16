@@ -1,4 +1,5 @@
 .stock {
+  padding: 20px;
   width: 100%;
   justify-content: center;
   display: flex;
@@ -43,5 +44,42 @@
       font-size: 20px;
       color: gray;
     }
+  }
+
+  .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    border-radius: 5px;
+    margin: 0 5px;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    float: left;
+  }
+
+  .button:hover {
+    background-color: #3e8e41;
+  }
+
+  .cross-button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    border-radius: 100px;
+    padding: 3px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    float: left;
+  }
+
+  .cross-button:hover {
+    background-color: #3e8e41;
   }
 }

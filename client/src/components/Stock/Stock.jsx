@@ -31,28 +31,21 @@ import axios from "axios";
 
  */
 
-const renderLineChart = (info) => {
+const RenderLineChart = (info, customData, buttonAction) => {
   if (!info) {
     return;
   }
-  const data = info.map((x) => x.price).reverse();
-  const labels = info.map((x) => x.date).reverse();
-
-  const customData = {
-    labels: labels,
-    datasets: [
-      {
-        label: "price",
-        data: data,
-        fill: false,
-        backgroundColor: "rgb(255, 99, 132)",
-        borderColor: "rgba(255, 99, 132, 0.2)",
-      },
-    ],
-  };
   return (
     <div style={{ maxWidth: "100%" }}>
       <Line data={customData} width={700} height={400} type={"line"} />
+      <div>
+        <div>Select range:</div>
+
+        <button className="button" onClick={() => buttonAction(6)}>1 week</button>
+        <button className="button" onClick={() => buttonAction(30)}>1 month</button>
+        <button className="button" onClick={() => buttonAction(30*6)}>6 months</button>
+        <button className="button" onClick={() => buttonAction(363)}>1 year</button>
+      </div>
     </div>
   );
 };
@@ -65,12 +58,60 @@ export const Stock = ({
 }) => {
   const [stock, setStock] = useState(null);
 
+  const [customData, setCustomData] = useState([]);
+
+
+  const dateFormatter = (stockDate) => {
+      let formattedData;
+      const date = new Date(stockDate.date * 1000);
+      formattedData = date.getDate() + '/' + date.getMonth() + '/' + date.getUTCFullYear().toString().slice(2,4);
+      return formattedData;
+  }
+
+  const handleButtonOnClick = (value) => {
+    const updatedData = stock.stockPrices.slice(0, value).map(x => x.price).reverse();
+    const updatedLabels = stock.stockPrices.slice(0, value).map(x => dateFormatter(x)).reverse()
+
+    const newData = {
+      labels: updatedLabels,
+      datasets: [
+        {
+          label: "price",
+          data: updatedData,
+          fill: false,
+          backgroundColor: "rgb(255, 99, 132)",
+          borderColor: "rgba(255, 99, 132, 0.2)",
+        },
+      ],
+    };
+
+    setCustomData(newData);
+  }
+
   useEffect(() => {
+    setStock(null);
     (async () => {
       if (userId == null || stockSymbol == null) return;
       const { data } = await axios.get(
-        `http://localhost:8080/api/users/${userId}/shares/${stockSymbol}`
+        `/users/${userId}/shares/${stockSymbol}`
       );
+      const newChartData = data.stockPrices.map((x) => x.price).reverse();
+      const newChartLabels = data.stockPrices.map((x) => dateFormatter(x)).reverse();
+
+      const newData = {
+        labels: newChartLabels,
+        datasets: [
+          {
+            label: "price",
+            data: newChartData,
+            fill: false,
+            backgroundColor: "rgb(255, 99, 132)",
+            borderColor: "rgba(255, 99, 132, 0.2)",
+          },
+        ],
+      };
+
+      setCustomData(newData);
       setStock(data);
     })();
   }, [stockSymbol, userId]);
@@ -89,7 +130,7 @@ export const Stock = ({
           }}
         >
           <span style={{fontWeight: "bold"}}>Stock value: {stock?.price}</span>
-          <button onClick={handleCrossClicked} data-testid="cross-button">
+          <button onClick={handleCrossClicked} className={'cross-button'} data-testid="cross-button">
             X
           </button>
         </div>
@@ -99,8 +140,7 @@ export const Stock = ({
         </div>
       </div>
       <div className={"graph"}>
-        {showChart && renderLineChart(stock?.stockPrices)}
-        <div>Data display actions:</div>
+        {showChart && RenderLineChart(stock?.stockPrices, customData, handleButtonOnClick)}
       </div>
       <div className={"body"}>
         <div style={{ width: "50%" }}>

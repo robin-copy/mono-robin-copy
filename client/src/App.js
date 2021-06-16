@@ -12,9 +12,7 @@ function App() {
   useEffect(() => {
     const f = async () => {
       try {
-        const { data } = await axios.get(
-          `http://localhost:8080/api/users/defaultUser`
-        );
+        const { data } = await axios.get(`users/defaultUser`);
         setUserId(data);
       } catch (e) {}
     };

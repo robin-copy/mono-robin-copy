@@ -100,6 +100,8 @@ jobs:
           npm run cy:run
 
   publish_server:
+    # needs: end2end_test
+
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
 
@@ -142,6 +144,7 @@ jobs:
           docker push $IMAGE_ID-$BRANCH_NAME:latest
 
   publish_client:
+    # needs: end2end_test
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
 

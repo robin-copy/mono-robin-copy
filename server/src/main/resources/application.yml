@@ -7,12 +7,12 @@ spring:
     generate-ddl: true
 
   datasource:
-    url: 'jdbc:postgresql://localhost:5432/postgres'
-    username: 'postgres'
-    password: 1234
+    url: "jdbc:postgresql://localhost:5432/postgres"
+    username: "postgres"
+    password: aseca2021
 
 server:
   servlet:
-    context-path: '/api'
+    context-path: "/api"
   error:
     include-message: always
